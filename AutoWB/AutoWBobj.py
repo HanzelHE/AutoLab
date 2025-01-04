@@ -27,7 +27,8 @@ def discern_obj(pic:np.array):
                     if j == 1:
                         x_list_obj.append(x_obj_mono)
                     break #j+1
-
+    with open('./AutoWB/groups.json', 'w') as f:
+        json.dump(x_list_obj, f)
 
     protein_dict = {} #创建所有蛋白组，key为第num组，value为所有y值
     for num in range(0,len(x_list_obj)): #遍历所有蛋白
@@ -61,7 +62,7 @@ def discern_obj(pic:np.array):
 
     cv2.imwrite(os.path.join(file_path,"WBpic_discern.png"),img)#添加至图片上
 
-    with open('./AutoWB/data.json', 'w') as f:
+    with open('./AutoWB/proteins.json', 'w') as f:
         json.dump(protein_dict, f)
 
     return protein_dict
